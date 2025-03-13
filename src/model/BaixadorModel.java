@@ -31,18 +31,23 @@ public class BaixadorModel {
 	}
 	
 	public String[] inputRecebedor() {
-		System.out.println("\n" + "Insira o link do vídeo do youtube e sua resolução");
+		System.out.println("\n" + "Insira o link do vídeo do youtube, sua resolução e se quiser mudar o diretório de salvamento, use como terceiro parametro (por padrao os videos serao salvos na pasta Videos do seu computador");
 		System.out.print(">");
 		Scanner input = new Scanner(System.in);
 		String texto = input.nextLine();
+		texto += " null";
 		String[] inputVetor = texto.split(" ");
 		return inputVetor;
 	}
 	
 	public void testeInput() {
 		String[] inputVetor = inputRecebedor();
+		String diretorio = System.getProperty("user.home") + "\\Videos";
+		if(!inputVetor[2].equals("null")) {
+			diretorio = inputVetor[2];
+		}
 		String[] executarPython = {"python", "C:\\Users\\dudur\\eclipse-workspace\\BaixadorDeVideos\\BaixadorCore.py",
-				inputVetor[0], inputVetor[1]}; 
+				inputVetor[0], inputVetor[1], diretorio}; 
 		try {
 			Process p = Runtime.getRuntime().exec(executarPython);
 			InputStream fluxo = p.getInputStream();

@@ -11,11 +11,11 @@ public class BaixadorController {
 	
 	public void executarBaixador() {
 		BaixadorModel baixador = new BaixadorModel();
-		String pergunta = "null";
+		String pergunta = "";
 		baixador.mostrarTitulo();
-		while(!pergunta.equals("n")) {
+		while(!pergunta.equalsIgnoreCase("n")) {
 			baixador.testeInput();
-			pergunta = perguntaSaida();
+			pergunta = perguntaSaida().toUpperCase();
 		}
 	}
 	
